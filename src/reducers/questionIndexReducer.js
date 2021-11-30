@@ -1,12 +1,11 @@
-import { SET_INDEX } from "../actions/types";
+import { SET_INDEX, INCREMENT_INDEX } from "../actions/types";
 
 const questionIndexReducer = (state = 0, action) => {
-  if (state === undefined) {
-    return 0;
-  }
   switch (action.type) {
     case SET_INDEX:
       return action.payload;
+    case INCREMENT_INDEX:
+      return state + action.payload;
     default:
       return state;
   }

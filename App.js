@@ -10,6 +10,7 @@ import thunk from "redux-thunk";
 
 const initialState = {
   questions: [],
+  questionIndex: 0,
 };
 const middlewares = applyMiddleware(thunk);
 const store = createStore(reducers, initialState, middlewares);
