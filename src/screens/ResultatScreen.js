@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useStore } from "react-redux";
 
-const ResultatScreen = () => {
+const ResultatScreen = ({ navigation }) => {
   const store = useStore();
   const state = store.getState();
   const rightAnswers = state.resultat.rightAnswers;
