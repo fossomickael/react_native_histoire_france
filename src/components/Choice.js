@@ -1,26 +1,27 @@
 import React from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { Button, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 const Choice = ({ title, onPress }) => {
   return (
-    <View style={styles.choice}>
-      <Button style={styles.button} title={title} onPress={() => onPress()} />
-    </View>
+    <TouchableOpacity style={styles.choice} onPress={() => onPress()}>
+      <Text style={styles.button}>{title}</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   choice: {
-    borderRadius: 6,
-    width: "80%",
-    marginBottom: 15,
-    marginTop: 25,
-    justifyContent: "center",
+    borderRadius: 3,
     alignItems: "center",
+    backgroundColor: "#3282B8",
+    padding: 10,
+    marginBottom: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    width: 200,
   },
   button: {
-    width: 80, // no matter what value I set here, their width doesn't changes
-    height: 20,
+    color: "#FFFFFF",
   },
 });
 export default Choice;

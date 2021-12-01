@@ -14,11 +14,12 @@ const ModalAnswered = ({ answered, nextquestion, to_display }) => {
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible);
+        nextquestion();
       }}
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text>{to_display}</Text>
+          <Text style={styles.to_display}>{to_display}</Text>
           <Text style={styles.modalText}>
             Le coup d'État du 2 décembre 1851 est l'acte par lequel, en
             violation de la légitimité constitutionnelle, Louis-Napoléon
@@ -46,15 +47,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: 20,
+  },
+  to_display: {
+    marginBottom: 10,
   },
   modalView: {
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    padding: 20,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "#BBE1FA",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -64,15 +68,16 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 6,
     padding: 10,
     elevation: 2,
+    color: "#BBE1FA",
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#3282B8",
   },
   textStyle: {
     color: "white",
@@ -81,7 +86,6 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center",
   },
 });
 

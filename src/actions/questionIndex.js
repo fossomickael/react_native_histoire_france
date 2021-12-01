@@ -1,9 +1,9 @@
-import { SET_INDEX, INCREMENT_INDEX } from "./types";
+import { RESET_INDEX, INCREMENT_INDEX } from "./types";
 
-export const setQuestionIndex = (value) => {
+export const resetQuestionIndex = () => {
   return {
-    type: SET_INDEX,
-    payload: value,
+    type: RESET_INDEX,
+    payload: 0,
   };
 };
 

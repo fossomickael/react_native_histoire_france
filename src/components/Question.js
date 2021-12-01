@@ -3,9 +3,18 @@ import { bindActionCreators } from "redux";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { incrementQuestionIndex } from "../actions/questionIndex";
+import { setRandomQuestions } from "../actions/questions";
+import { resetQuestionIndex } from "../actions/questionIndex";
+import { wrongAnswer, rightAnswer } from "../actions/resultatIndex";
+
 import ModalAnswered from "./ModalAnswered";
 import Choice from "./Choice";
 class Question extends Component {
+  componentDidMount = () => {
+    if (!this.props.question) {
+      this.props.setRandomQuestions();
+    }
+  };
   constructor(props) {
     super(props);
     this.state = { answered: false, to_display: "" };
@@ -17,24 +26,31 @@ class Question extends Component {
         to_display: "Bonne réponse!",
         answered: true,
       });
+      this.props.rightAnswer();
     } else {
       this.setState({
         to_display: "Mauvaise réponse!",
         answered: true,
       });
+      this.props.wrongAnswer();
     }
   };
 
   nextquestion = () => {
-    this.props.incrementQuestionIndex();
     this.setState({
       answered: false,
     });
+    if (this.props.numberofquestions === this.props.questionIndex + 1) {
+      this.props.resetQuestionIndex();
+      this.props.navigation.navigate("Resultat");
+    } else {
+      this.props.incrementQuestionIndex();
+    }
   };
 
   render() {
     if (!this.props.question) {
-      return <Text>Loading</Text>;
+      return <Text>Chargement</Text>;
     }
     return (
       <View>
@@ -43,7 +59,7 @@ class Question extends Component {
           nextquestion={this.nextquestion}
           to_display={this.state.to_display}
         />
-        <Text>{this.props.question.libelle}</Text>
+        <Text style={styles.libelle}>{this.props.question.libelle}</Text>
         <View style={styles.choicesView}>
           {this.props.question.choices.map((choice) => {
             return (
@@ -60,17 +76,39 @@ class Question extends Component {
   }
 }
 const styles = StyleSheet.create({
-  choicesView: {},
+  choicesView: {
+    alignItems: "center",
+  },
+  to_display: {
+    color: "#0F4C75",
+  },
+  libelle: {
+    color: "#1B262C",
+    marginBottom: 30,
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 100,
+  },
 });
 const mapStateToProps = (state) => {
   return {
     question: state.questions[state.questionIndex],
-    index: state.questionIndex,
+    numberofquestions: state.questions.length,
+    questionIndex: state.questionIndex,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ incrementQuestionIndex }, dispatch);
+  return bindActionCreators(
+    {
+      incrementQuestionIndex,
+      setRandomQuestions,
+      resetQuestionIndex,
+      wrongAnswer,
+      rightAnswer,
+    },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);
