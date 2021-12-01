@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
-const ModalAnswered = ({ answered, nextquestion, to_display }) => {
+const ModalAnswered = ({ answered, nextquestion, to_display, explication }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -20,14 +20,7 @@ const ModalAnswered = ({ answered, nextquestion, to_display }) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.to_display}>{to_display}</Text>
-          <Text style={styles.modalText}>
-            Le coup d'État du 2 décembre 1851 est l'acte par lequel, en
-            violation de la légitimité constitutionnelle, Louis-Napoléon
-            Bonaparte, président de la République française depuis trois ans,
-            conserve le pouvoir à quelques mois de la fin de son mandat alors
-            que la Constitution de la Deuxième République lui interdisait de se
-            représenter.
-          </Text>
+          <Text style={styles.modalText}>{explication}</Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => {

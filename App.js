@@ -31,7 +31,11 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen name="Question" component={QuestionScreen} />
-            <Stack.Screen name="Resultat" component={ResultatScreen} />
+            <Stack.Screen
+              name="Resultat"
+              component={ResultatScreen}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

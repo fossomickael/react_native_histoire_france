@@ -58,6 +58,7 @@ class Question extends Component {
           answered={this.state.answered}
           nextquestion={this.nextquestion}
           to_display={this.state.to_display}
+          explication={this.props.question.explication}
         />
         <Text style={styles.libelle}>{this.props.question.libelle}</Text>
         <View style={styles.choicesView}>
@@ -80,14 +81,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   to_display: {
-    color: "#0F4C75",
+    color: "#DEE1EC",
   },
   libelle: {
     color: "#1B262C",
     marginBottom: 30,
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 24,
     marginTop: 100,
+    fontFamily: "Roboto",
+    fontWeight: "bold",
+    margin: 20,
   },
 });
 const mapStateToProps = (state) => {

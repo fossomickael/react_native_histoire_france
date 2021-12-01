@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
   button: {
     color: "#FFFFFF",
+    fontFamily: "Roboto",
   },
 });
 export default Choice;
