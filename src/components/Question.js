@@ -6,7 +6,7 @@ import { incrementQuestionIndex } from "../actions/questionIndex";
 import { setRandomQuestions } from "../actions/questions";
 import { resetQuestionIndex } from "../actions/questionIndex";
 import { wrongAnswer, rightAnswer } from "../actions/resultatIndex";
-
+import sendAnswer from "../Utils/SendAnswer";
 import ModalAnswered from "./ModalAnswered";
 import Choice from "./Choice";
 class Question extends Component {
@@ -20,8 +20,9 @@ class Question extends Component {
     this.state = { answered: false, to_display: "" };
   }
 
-  handleChoice = (is_right_answer) => {
-    if (is_right_answer) {
+  handleChoice = (choice) => {
+    sendAnswer(choice.id);
+    if (choice.is_right_answer) {
       this.setState({
         to_display: "Bonne réponse!",
         answered: true,
@@ -67,7 +68,7 @@ class Question extends Component {
               <Choice
                 key={choice.id}
                 title={choice.libelle}
-                onPress={() => this.handleChoice(choice.is_right_answer)}
+                onPress={() => this.handleChoice(choice)}
               />
             );
           })}
