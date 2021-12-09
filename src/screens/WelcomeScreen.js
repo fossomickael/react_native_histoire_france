@@ -12,10 +12,17 @@ const WelcomeScreen = ({ navigation }) => {
       />
       <TouchableOpacity
         style={styles.jouer}
-        onPress={() => navigation.navigate("Question")}
+        onPress={() => navigation.navigate("Question", { category_id: 0 })}
       >
         <Text style={styles.button}>Jouer</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.jouer}
+        onPress={() => navigation.navigate("Category")}
+      >
+        <Text style={styles.button}>Catégories</Text>
+      </TouchableOpacity>
+      <Text>Des nouvelles questions chaque semaine!</Text>
     </SafeAreaView>
   );
 };
