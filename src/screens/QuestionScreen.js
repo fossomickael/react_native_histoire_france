@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from "react-native";
-import { setRandomQuestions } from "../actions/questions";
+import { setRandomQuestions, setCategoryQuestions } from "../actions/questions";
 import { useDispatch, useStore } from "react-redux";
 import Question from "../components/Question";
 
-const QuestionScreen = ({ navigation }) => {
+const QuestionScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
+  const { category_id } = route.params;
 
   useEffect(() => {
-    dispatch(setRandomQuestions());
+    if (category_id === 0) {
+      dispatch(setRandomQuestions());
+    } else {
+      dispatch(setCategoryQuestions(category_id));
+    }
   }, []);
 
   return (

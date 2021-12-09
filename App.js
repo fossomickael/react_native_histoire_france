@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
 import QuestionScreen from "./src/screens/QuestionScreen";
 import ResultatScreen from "./src/screens/ResultatScreen";
+import CategoryScreen from "./src/screens/CategoryScreen";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reducers from "./src/reducers";
@@ -30,10 +31,19 @@ export default function App() {
               component={WelcomeScreen}
               options={{ headerShown: false }}
             />
-            <Stack.Screen name="Question" component={QuestionScreen} />
+            <Stack.Screen
+              name="Question"
+              component={QuestionScreen}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="Resultat"
               component={ResultatScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Category"
+              component={CategoryScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

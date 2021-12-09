@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://arcane-hollows-78343.herokuapp.com",
+  baseURL: "https://quizz-histoire-france.herokuapp.com",
 });
