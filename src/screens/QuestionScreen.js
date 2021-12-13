@@ -3,7 +3,7 @@ import { View, Text, Button } from "react-native";
 import { setRandomQuestions, setCategoryQuestions } from "../actions/questions";
 import { useDispatch, useStore } from "react-redux";
 import Question from "../components/Question";
-
+import Timer from "../components/Timer";
 const QuestionScreen = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const { category_id } = route.params;
@@ -19,6 +19,7 @@ const QuestionScreen = ({ route, navigation }) => {
   return (
     <View>
       <Question navigation={navigation} />
+      <Timer />
     </View>
   );
 };

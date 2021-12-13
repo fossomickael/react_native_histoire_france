@@ -6,6 +6,7 @@ import { incrementQuestionIndex } from "../actions/questionIndex";
 import { setRandomQuestions } from "../actions/questions";
 import { resetQuestionIndex } from "../actions/questionIndex";
 import { wrongAnswer, rightAnswer } from "../actions/resultatIndex";
+import { startTimer } from "../actions/questionTimer";
 import sendAnswer from "../Utils/SendAnswer";
 import ModalAnswered from "./ModalAnswered";
 import Choice from "./Choice";
@@ -14,6 +15,7 @@ class Question extends Component {
     if (!this.props.question) {
       this.props.setRandomQuestions();
     }
+    this.props.startTimer();
   };
   constructor(props) {
     super(props);
@@ -45,6 +47,7 @@ class Question extends Component {
       this.props.resetQuestionIndex();
       this.props.navigation.navigate("Resultat");
     } else {
+      this.props.startTimer();
       this.props.incrementQuestionIndex();
     }
   };
@@ -57,6 +60,7 @@ class Question extends Component {
       <View>
         <ModalAnswered
           answered={this.state.answered}
+          timerEnded={this.props.timerEnded}
           nextquestion={this.nextquestion}
           to_display={this.state.to_display}
           explication={this.props.question.explication}
@@ -100,6 +104,7 @@ const mapStateToProps = (state) => {
     question: state.questions[state.questionIndex],
     numberofquestions: state.questions.length,
     questionIndex: state.questionIndex,
+    timerEnded: state.questionTimer.timerEnded,
   };
 };
 
@@ -111,6 +116,7 @@ const mapDispatchToProps = (dispatch) => {
       resetQuestionIndex,
       wrongAnswer,
       rightAnswer,
+      startTimer,
     },
     dispatch
   );
