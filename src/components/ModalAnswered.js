@@ -10,9 +10,8 @@ const ModalAnswered = ({
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    console.log(timerEnded);
-    setModalVisible(timerEnded);
-  }, [timerEnded]);
+    setModalVisible(timerEnded || answered);
+  }, [timerEnded, answered]);
 
   return (
     <Modal

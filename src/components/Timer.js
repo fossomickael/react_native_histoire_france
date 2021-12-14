@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-
+import { wrongAnswer } from "../actions/resultatIndex";
 import { startTimer, stopTimer } from "../actions/questionTimer";
 class Timer extends Component {
   constructor(props) {
@@ -20,14 +20,18 @@ class Timer extends Component {
   componentDidUpdate() {
     if (new Date().getTime() / 1000 > this.props.expireTime) {
       this.props.stopTimer();
+      this.props.wrongAnswer();
     }
   }
 
   render() {
     return (
       <View>
-        <Text>
-          {Math.round(this.props.expireTime - new Date().getTime() / 1000)}
+        <Text style={styles.timer}>
+          {Math.max(
+            0,
+            Math.round(this.props.expireTime - new Date().getTime() / 1000)
+          )}
         </Text>
       </View>
     );
@@ -46,9 +50,16 @@ const mapDispatchToProps = (dispatch) => {
     {
       startTimer,
       stopTimer,
+      wrongAnswer,
     },
     dispatch
   );
 };
+
+const styles = StyleSheet.create({
+  timer: {
+    fontSize: 25,
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

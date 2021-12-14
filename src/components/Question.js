@@ -23,7 +23,8 @@ class Question extends Component {
   }
 
   handleChoice = (choice) => {
-    sendAnswer(choice.id);
+    const timeToAnswer = new Date().getTime() / 1000 - this.props.startTime;
+    sendAnswer(choice.id, timeToAnswer);
     if (choice.is_right_answer) {
       this.setState({
         to_display: "Bonne réponse!",
@@ -105,6 +106,7 @@ const mapStateToProps = (state) => {
     numberofquestions: state.questions.length,
     questionIndex: state.questionIndex,
     timerEnded: state.questionTimer.timerEnded,
+    startTime: state.questionTimer.startTime,
   };
 };
 
