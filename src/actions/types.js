@@ -5,3 +5,5 @@ export const WRONG_ANSWER = "wrong_answer";
 export const RIGHT_ANSWER = "right_answer";
 export const GET_ALL_CATEGORIES = "get_all_categories";
 export const GET_CATEGORY_QUESTIONS = "get_category_questions";
+export const START_TIMER = "start_timer";
+export const STOP_TIMER = "stop_timer";

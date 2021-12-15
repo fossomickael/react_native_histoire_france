@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
-const ModalAnswered = ({ answered, nextquestion, to_display, explication }) => {
+const ModalAnswered = ({
+  answered,
+  timerEnded,
+  nextquestion,
+  to_display,
+  explication,
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    setModalVisible(answered);
-  }, [answered]);
+    setModalVisible(timerEnded || answered);
+  }, [timerEnded, answered]);
 
   return (
     <Modal

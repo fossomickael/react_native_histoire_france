@@ -6,22 +6,36 @@ import { incrementQuestionIndex } from "../actions/questionIndex";
 import { setRandomQuestions } from "../actions/questions";
 import { resetQuestionIndex } from "../actions/questionIndex";
 import { wrongAnswer, rightAnswer } from "../actions/resultatIndex";
+import { startTimer, stopTimer } from "../actions/questionTimer";
 import sendAnswer from "../Utils/SendAnswer";
 import ModalAnswered from "./ModalAnswered";
 import Choice from "./Choice";
 class Question extends Component {
-  componentDidMount = () => {
-    if (!this.props.question) {
-      this.props.setRandomQuestions();
-    }
-  };
   constructor(props) {
     super(props);
     this.state = { answered: false, to_display: "" };
   }
 
+  componentDidMount = () => {
+    if (this.props.question === undefined) {
+      this.props.setRandomQuestions();
+    }
+
+    if (this.props.question) {
+      this.props.startTimer();
+    }
+  };
+
+  componentDidUpdate(prevProps) {
+    // Utilisation classique (pensez bien à comparer les props) :
+    if (this.props.question && prevProps.question === undefined) {
+      this.props.startTimer();
+    }
+  }
+
   handleChoice = (choice) => {
-    sendAnswer(choice.id);
+    const timeToAnswer = new Date().getTime() / 1000 - this.props.startTime;
+    sendAnswer(choice.id, timeToAnswer);
     if (choice.is_right_answer) {
       this.setState({
         to_display: "Bonne réponse!",
@@ -45,18 +59,20 @@ class Question extends Component {
       this.props.resetQuestionIndex();
       this.props.navigation.navigate("Resultat");
     } else {
+      this.props.startTimer();
       this.props.incrementQuestionIndex();
     }
   };
 
   render() {
-    if (!this.props.question) {
+    if (this.props.question === undefined) {
       return <Text>Chargement</Text>;
     }
     return (
       <View>
         <ModalAnswered
           answered={this.state.answered}
+          timerEnded={this.props.timerEnded}
           nextquestion={this.nextquestion}
           to_display={this.state.to_display}
           explication={this.props.question.explication}
@@ -100,6 +116,8 @@ const mapStateToProps = (state) => {
     question: state.questions[state.questionIndex],
     numberofquestions: state.questions.length,
     questionIndex: state.questionIndex,
+    timerEnded: state.questionTimer.timerEnded,
+    startTime: state.questionTimer.startTime,
   };
 };
 
@@ -111,6 +129,8 @@ const mapDispatchToProps = (dispatch) => {
       resetQuestionIndex,
       wrongAnswer,
       rightAnswer,
+      startTimer,
+      stopTimer,
     },
     dispatch
   );
