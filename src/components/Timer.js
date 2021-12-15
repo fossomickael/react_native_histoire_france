@@ -25,6 +25,9 @@ class Timer extends Component {
   }
 
   render() {
+    if (this.props.expireTime === undefined) {
+      return <></>;
+    }
     return (
       <View>
         <Text style={styles.timer}>
