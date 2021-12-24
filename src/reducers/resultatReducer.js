@@ -6,6 +6,7 @@ const resultatReducer = (
 ) => {
   switch (action.type) {
     case WRONG_ANSWER:
+      console.log(state.wrongAnswers);
       return { ...state, wrongAnswers: state.wrongAnswers + action.payload };
     case RIGHT_ANSWER:
       return { ...state, rightAnswers: state.rightAnswers + action.payload };

@@ -18,15 +18,18 @@ class Timer extends Component {
   }
 
   componentDidUpdate() {
-    if (new Date().getTime() / 1000 > this.props.expireTime) {
-      this.props.stopTimer();
+    if (
+      new Date().getTime() / 1000 > this.props.expireTime &&
+      !this.props.timerEnded
+    ) {
       this.props.wrongAnswer();
+      this.props.stopTimer();
     }
   }
 
   render() {
-    if (this.props.expireTime === undefined) {
-      return <></>;
+    if (this.props.expireTime === undefined || this.props.timerEnded) {
+      return <Text style={styles.timer}>30</Text>;
     }
     return (
       <View>
@@ -45,6 +48,7 @@ const mapStateToProps = (state) => {
   return {
     startTime: state.questionTimer.startTime,
     expireTime: state.questionTimer.expireTime,
+    timerEnded: state.questionTimer.timerEnded,
   };
 };
 
