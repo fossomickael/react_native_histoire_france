@@ -1,13 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useStore } from "react-redux";
+import { useStore, useDispatch } from "react-redux";
+import { incrementResult } from "../Utils/SaveData";
+import { RESET_RESULTAT } from "../actions/types";
 
 const ResultatScreen = ({ navigation }) => {
   const store = useStore();
   const state = store.getState();
+  const dispatch = useDispatch();
   const rightAnswers = state.resultat.rightAnswers;
   const wrongAnswers = state.resultat.wrongAnswers;
   const totalAnswers = rightAnswers + wrongAnswers;
+  incrementResult("wrongAnswers", wrongAnswers);
+  incrementResult("rightAnswers", rightAnswers);
+  dispatch({ type: RESET_RESULTAT });
+
   const percentage = Math.ceil((rightAnswers / totalAnswers) * 100);
   return (
     <View style={styles.container}>
