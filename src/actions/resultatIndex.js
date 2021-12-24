@@ -1,4 +1,4 @@
-import { WRONG_ANSWER, RIGHT_ANSWER } from "./types";
+import { WRONG_ANSWER, RIGHT_ANSWER, RESET_RESULTAT } from "./types";
 
 export const wrongAnswer = () => {
   return {
@@ -11,5 +11,12 @@ export const rightAnswer = () => {
   return {
     type: RIGHT_ANSWER,
     payload: 1,
+  };
+};
+
+export const resetResultat = () => {
+  return {
+    type: RESET_RESULTAT,
+    payload: 0,
   };
 };
