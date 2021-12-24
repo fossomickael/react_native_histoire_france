@@ -36,6 +36,7 @@ class Question extends Component {
   handleChoice = (choice) => {
     const timeToAnswer = new Date().getTime() / 1000 - this.props.startTime;
     sendAnswer(choice.id, timeToAnswer);
+    this.props.stopTimer();
     if (choice.is_right_answer) {
       this.setState({
         to_display: "Bonne réponse!",
@@ -47,18 +48,20 @@ class Question extends Component {
         to_display: "Mauvaise réponse!",
         answered: true,
       });
+
       this.props.wrongAnswer();
     }
   };
 
   nextquestion = () => {
-    this.setState({
-      answered: false,
-    });
     if (this.props.numberofquestions === this.props.questionIndex + 1) {
       this.props.resetQuestionIndex();
+      this.props.stopTimer();
       this.props.navigation.navigate("Resultat");
     } else {
+      this.setState({
+        answered: false,
+      });
       this.props.startTimer();
       this.props.incrementQuestionIndex();
     }
