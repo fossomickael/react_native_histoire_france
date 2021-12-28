@@ -27,18 +27,20 @@ class Timer extends Component {
     }
   }
 
+  elasped_time = () => {
+    return Math.max(
+      0,
+      Math.round(this.props.expireTime - new Date().getTime() / 1000)
+    );
+  };
+
   render() {
     if (this.props.expireTime === undefined || this.props.timerEnded) {
       return <Text style={styles.timer}>30</Text>;
     }
     return (
       <View>
-        <Text style={styles.timer}>
-          {Math.max(
-            0,
-            Math.round(this.props.expireTime - new Date().getTime() / 1000)
-          )}
-        </Text>
+        <Text style={styles.timer}>{this.elasped_time()}</Text>
       </View>
     );
   }
