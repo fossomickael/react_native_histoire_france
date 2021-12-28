@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
   },
   details: {
     marginBottom: 10,
-    color: "#BBE1FA",
+    color: "#FFFFFF",
     fontSize: 24,
   },
   card_template: {
-    backgroundColor: "#0F4C75",
+    backgroundColor: "#3282B8",
+
     borderRadius: 8,
     padding: 16,
   },
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 48,
     fontWeight: "bold",
-    fontFamily: "Roboto",
     color: "#1B262C",
     marginBottom: 16,
   },
@@ -73,6 +73,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     width: 200,
+  },
+  button: {
+    color: "#FFFFFF",
   },
 });
 
