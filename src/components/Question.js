@@ -69,7 +69,7 @@ class Question extends Component {
 
   render() {
     if (this.props.question === undefined) {
-      return <Text>Chargement</Text>;
+      return <Text>Chargement... Connexion à Internet nécessaire</Text>;
     }
     return (
       <View>
