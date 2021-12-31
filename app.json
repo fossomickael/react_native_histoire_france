@@ -4,7 +4,7 @@
     "slug": "react_native_histoire_france",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_512_histoire.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,11 +19,9 @@
     },
     "android": {
       "permissions": [],
-      "versionCode": 2,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
+      "versionCode": 3,
+      "icon": "./assets/icon_512_histoire.png",
+
       "package": "com.fcpa69210.react_native_histoire_france"
     },
     "web": {
