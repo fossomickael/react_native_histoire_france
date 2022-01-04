@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   button: {
     color: "#FFFFFF",
-    fontFamily: "Roboto",
+    fontSize: 24,
   },
   titre: {
     fontSize: 25,
