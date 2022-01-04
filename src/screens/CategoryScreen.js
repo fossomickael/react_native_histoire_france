@@ -19,7 +19,7 @@ const CategoryScreen = ({ navigation }) => {
   }, []);
 
   if (!categories) {
-    return <Text>Chargement</Text>;
+    return <Text>Chargement... Connexion à Internet nécessaire</Text>;
   }
 
   return (
