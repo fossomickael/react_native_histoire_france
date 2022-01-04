@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     alignItems: "center",
     backgroundColor: "#3282B8",
-    padding: 10,
     marginBottom: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
     width: 200,
   },
   button: {
     color: "#FFFFFF",
+    fontSize: 24,
   },
   image: {
     width: 250,

@@ -19,7 +19,7 @@ const CategoryScreen = ({ navigation }) => {
   }, []);
 
   if (!categories) {
-    return <Text>Chargement</Text>;
+    return <Text>Chargement... Connexion à Internet nécessaire</Text>;
   }
 
   return (
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   button: {
     color: "#FFFFFF",
-    fontFamily: "Roboto",
+    fontSize: 24,
   },
   titre: {
     fontSize: 25,
